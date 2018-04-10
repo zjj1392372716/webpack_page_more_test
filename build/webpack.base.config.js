@@ -14,7 +14,6 @@ let baseConfig = {
         filename: 'js/[name].js',
         publicPath: ''
     },
-
     module: {
         rules: [
             {
@@ -70,7 +69,7 @@ let baseConfig = {
         })
     ]
 }
-
+// 对src目录下的 html 文件进行取文件名操作
 var pages = Object.keys(getEntry('./src/*.html'));
 var confTitle = [
     { name: 'index', title: '这是首页标题' },
@@ -91,11 +90,13 @@ pages.forEach((pathname) => {
         }
     };
     conf.chunks = ['mainifest', 'vendor', pathname]
+    // 添加 title 进去
     for (var i in confTitle) {
         if (confTitle[i].name === pathname) {
             conf.title = confTitle[i].title
         }
     }
+    // html-webpack-plugin生成 html文件
     baseConfig.plugins.push(new HtmlWebpackPlugin(conf));
 });
 
@@ -115,7 +116,7 @@ function getEntry(globPath) {
         entries[basename] = basename;
     }
 
-    return entries;
+    return entries; // 将文件名对象返回 {index: index, about: about, list: list}
 }
 
 module.exports = baseConfig

@@ -15,8 +15,8 @@ module.exports = merge(baseWebpackConfig, {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'eslint-loader',
-                enforce: 'pre',
+                loader: 'eslint-loader', 
+                enforce: 'pre', // 在打包之前进行eslint检测
                 include: path.resolve(__dirname, '../src/'),
                 options: {
                     formatter: require('eslint-friendly-formatter')
@@ -57,7 +57,7 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) //暴露变量。判断当前环境是否为dev/build环境
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin() // 热更新
     ],
-    devtool: '#cheap-module-eval-source-map'
+    devtool: '#cheap-module-eval-source-map' // debug 调试
 })

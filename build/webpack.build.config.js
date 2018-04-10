@@ -1,7 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const baseWebpackConfig = require('./webpack.base.config')
-const merge = require('webpack-merge')
+const merge = require('webpack-merge') // 用于合并配置文件
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 分离css
 const CleanPlugin = require('clean-webpack-plugin') //webpack插件，用于清除目录文件
 const Uglify = require('uglifyjs-webpack-plugin'); // 压缩js代码
@@ -17,7 +17,7 @@ var buildConfig = {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    MiniCssExtractPlugin.loader, // 分离css
                     'css-loader',
                     {
                         loader: 'postcss-loader',
